@@ -1,0 +1,327 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+    --primary-bg: #111820;
+    --card-bg: #1c252e;
+    --accent-blue: #3b82f6;
+    --text-light: #f8fafc;
+    --text-muted: #94a3b8;
+    --border-color: rgba(255, 255, 255, 0.08);
+    --sidebar-width: 260px;
+    --right-sidebar-width: 300px;
+    --header-height: 80px;
+    --transition: all 0.3s ease;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--primary-bg);
+    color: var(--text-light);
+    height: 100vh;
+    overflow: hidden;
+}
+
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: var(--sidebar-width) 1fr var(--right-sidebar-width);
+    grid-template-rows: var(--header-height) 1fr auto;
+    grid-template-areas: 
+        "logo header profile"
+        "sidebar content right-sidebar"
+        "sidebar footer footer";
+    height: 100vh;
+}
+
+/* Area a: Logo/Branding */
+.logo-area {
+    grid-area: logo;
+    background-color: var(--primary-bg);
+    border-right: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    padding: 0 1.5rem;
+    gap: 1rem;
+    font-weight: 700;
+    font-size: 1.25rem;
+    letter-spacing: 1px;
+}
+
+.logo-circle {
+    background: var(--accent-blue);
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+}
+
+/* Area b: Top Header */
+.top-header {
+    grid-area: header;
+    background-color: var(--primary-bg);
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    padding: 0 2rem;
+}
+
+.search-bar {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--border-color);
+    padding: 0.6rem 1rem;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    width: 400px;
+}
+
+.search-bar i {
+    color: var(--text-muted);
+}
+
+.search-bar input {
+    background: transparent;
+    border: none;
+    color: var(--text-light);
+    outline: none;
+    width: 100%;
+}
+
+/* Area c: Profile Area */
+.profile-area {
+    grid-area: profile;
+    background-color: var(--primary-bg);
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 0 1.5rem;
+    gap: 1.5rem;
+}
+
+.notifications {
+    position: relative;
+    cursor: pointer;
+    font-size: 1.25rem;
+    color: var(--text-muted);
+}
+
+.badge {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background: #ef4444;
+    color: white;
+    font-size: 0.7rem;
+    padding: 2px 5px;
+    border-radius: 10px;
+    font-weight: bold;
+}
+
+.user-profile {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    cursor: pointer;
+}
+
+.user-profile img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 2px solid var(--accent-blue);
+}
+
+.user-info .name {
+    display: block;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.user-info .status {
+    font-size: 0.75rem;
+    color: #10b981;
+}
+
+/* Area d: Sidebar Navigation */
+.sidebar-nav {
+    grid-area: sidebar;
+    background-color: var(--primary-bg);
+    border-right: 1px solid var(--border-color);
+    padding: 2rem 1rem;
+}
+
+.nav-links {
+    list-style: none;
+}
+
+.nav-links li {
+    margin-bottom: 0.5rem;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--text-muted);
+    padding: 0.8rem 1rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    border-radius: 12px;
+    transition: var(--transition);
+    font-weight: 500;
+}
+
+.nav-links li.active a,
+.nav-links a:hover {
+    background: rgba(59, 130, 246, 0.1);
+    color: var(--accent-blue);
+}
+
+/* Area e: Main Content */
+.main-content {
+    grid-area: content;
+    padding: 2.5rem;
+    overflow-y: auto;
+    background: linear-gradient(135deg, #111820 0%, #161f29 100%);
+}
+
+.content-header h2 {
+    font-size: 1.75rem;
+    margin-bottom: 0.5rem;
+}
+
+.content-header p {
+    color: var(--text-muted);
+    margin-bottom: 2.5rem;
+}
+
+.content-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+}
+
+.stats-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    padding: 1.5rem;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    transition: var(--transition);
+}
+
+.stats-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--accent-blue);
+}
+
+.stats-card .label {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+.stats-card .value {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--accent-blue);
+}
+
+/* Area f: Right Sidebar */
+.right-sidebar {
+    grid-area: right-sidebar;
+    background-color: var(--primary-bg);
+    border-left: 1px solid var(--border-color);
+    padding: 2rem 1.5rem;
+}
+
+.right-sidebar h3 {
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.agenda-list {
+    list-style: none;
+}
+
+.agenda-list li {
+    background: rgba(255, 255, 255, 0.03);
+    padding: 1rem;
+    border-radius: 15px;
+    margin-bottom: 1rem;
+    border-left: 4px solid var(--accent-blue);
+}
+
+.agenda-list .date {
+    font-weight: 700;
+    font-size: 0.85rem;
+    color: var(--accent-blue);
+    display: block;
+    margin-bottom: 0.25rem;
+}
+
+.agenda-list p {
+    font-size: 0.9rem;
+    color: var(--text-light);
+}
+
+/* Area g: Bottom Footer */
+.bottom-footer {
+    grid-area: footer;
+    background-color: var(--primary-bg);
+    border-top: 1px solid var(--border-color);
+    padding: 1.25rem 2.5rem;
+    text-align: left;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--primary-bg);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--card-bg);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #2d3748;
+}
+
+@media (max-width: 1024px) {
+    .dashboard-grid {
+        grid-template-columns: 80px 1fr 0;
+        grid-template-areas: 
+            "logo header profile"
+            "sidebar content content"
+            "sidebar footer footer";
+    }
+    
+    .right-sidebar {
+        display: none;
+    }
+    
+    .logo-area span, .user-info, .nav-links span {
+        display: none;
+    }
+}
